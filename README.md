@@ -21,7 +21,7 @@ The Vite `/api` proxy is for local development only. To host both parts on Verce
 
 1. Keep the frontend project rooted at `client`.
 2. Create a backend project rooted at `server`. Vercel detects the Express app in `server.js`.
-3. Configure the backend project's `MONGO_URI` with a reachable MongoDB Atlas URI, `JWT_SECRET` with a private random value, and `CLIENT_URL` with the exact frontend origin (for example, `https://smart-olive-five.vercel.app`).
+3. Configure the backend project's `MONGO_URI` with a reachable MongoDB Atlas URI, `JWT_SECRET` with a private random value, and `CLIENT_URL` with the exact frontend origin (`https://client-eight-eta-25.vercel.app`).
 4. After the backend deploys, set `VITE_API_BASE_URL` in the frontend project to the backend URL ending in `/api` (for example, `https://your-api.vercel.app/api`) and redeploy the frontend.
 
 Vercel's function filesystem is temporary, so uploaded complaint images need object storage for reliable production persistence.
