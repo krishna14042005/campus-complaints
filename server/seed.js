@@ -1,0 +1,12 @@
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import { Student, Admin, Staff } from './models.js';
+await mongoose.connect(process.env.MONGO_URI);
+const up = async (M, email, data, pw) => M.updateOne({ email }, { $set: { ...data, email, password: await bcrypt.hash(pw, 10) } }, { upsert: true });
+await up(Admin, 'admin@campus.edu', { name: 'Campus Admin' }, 'Admin@123');
+await up(Staff, 'ravi@campus.edu', { name: 'Ravi Kumar', specialty: 'Electrical' }, 'Staff@123');
+await up(Staff, 'meena@campus.edu', { name: 'Meena Devi', specialty: 'Plumbing & Water' }, 'Staff@123');
+await up(Student, 'student@campus.edu', { name: 'Demo Student', rollNo: 'CS21001', department: 'CSE' }, 'Student@123');
+console.log('Seeded: admin@campus.edu/Admin@123, ravi@campus.edu & meena@campus.edu/Staff@123, student@campus.edu/Student@123');
+process.exit(0);
